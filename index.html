@@ -15,84 +15,38 @@
 
     .day-button {
       width: 120px;
-      height: 50px;
       margin: 5px;
       padding: 10px; /* Increased padding for easier clicking */
       background-color: white;
-      border: 5px solid #6e6e6e;
+      border: 5px solid #404040 .10;
       cursor: pointer;
       border-radius: 10px;
       font-family: 'Courier New', Courier, monospace;
       font-size: 16px;
       font-weight: bolder;
       box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
-      transition: background-color 0.3s ease-in-out;
+      transition: background-color 0.4s ease-in-out;
     }
 
-    .reset-button {
-      width: 120px;
-      height: 50px;
-      margin-top: 10px;
-      padding: 10px; /* Increased padding for easier clicking */
-      background-color: #3498db;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 20px;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 16px;
-      font-weight: bolder;
-      box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
-      transition: background-color 0.3s ease-in-out;
-    }
   </style>
 </head>
 <body>
 
 <div id="david-container" onclick="handleButtonClick(event)">
   <h2>David</h2>
-  <button class="day-button" onclick="toggleColor(event, this)">Sunday</button>
-  <button class="day-button" onclick="toggleColor(event, this)">Monday</button>
-  <button class="day-button" onclick="toggleColor(event, this)">Tuesday</button>
-  <button class="day-button" onclick="toggleColor(event, this)">Wednesday</button>
-  <button class="day-button" onclick="toggleColor(event, this)">Thursday</button>
-  <button class="day-button" onclick="toggleColor(event, this)">Friday</button>
-  <button class="day-button" onclick="toggleColor(event, this)">Saturday</button>
+  <button class="day-button" onclick="toggleColor(event, this)">Took Medicine</button>
 </div>
 
 <div id="jessee-container" onclick="handleButtonClick(event)">
   <h2>Jessee</h2>  
-  <button class="day-button" onclick="toggleColor(event, this)">Sunday</button>
-  <button class="day-button" onclick="toggleColor(event, this)">Monday</button>
-  <button class="day-button" onclick="toggleColor(event, this)">Tuesday</button>
-  <button class="day-button" onclick="toggleColor(event, this)">Wednesday</button>
-  <button class="day-button" onclick="toggleColor(event, this)">Thursday</button>
-  <button class="day-button" onclick="toggleColor(event, this)">Friday</button>
-  <button class="day-button" onclick="toggleColor(event, this)">Saturday</button>
-  <button class="reset-button" onclick="resetColors()">Reset</button>
+  <button class="day-button" onclick="toggleColor(event, this)">Took Medicine</button>
 </div>
 
 <script>
   function toggleColor(event, button) {
-    event.stopPropagation(); // Stop event propagation to prevent it from reaching the container
     button.style.backgroundColor = button.style.backgroundColor === 'white' ? 'green' : 'white';
   }
 
-  function resetColors() {
-    var buttons = document.querySelectorAll('.day-button');
-    buttons.forEach(function(button) {
-      button.style.backgroundColor = 'white';
-    });
-  }
-
-  function handleButtonClick(event) {
-    var targetClass = event.target.classList;
-    if (targetClass.contains('day-button')) {
-      toggleColor(event, event.target);
-    } else if (targetClass.contains('reset-button')) {
-      resetColors();
-    }
-  }
 </script>
 
 </body>
