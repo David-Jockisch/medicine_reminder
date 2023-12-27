@@ -1,58 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js"></script>
   
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      background-color: rgba(0, 0, 0, 0);
-      color: white;
-      margin-left: 25px;
-      font-family: Arial, Helvetica, sans-serif;
-      text-shadow: 2px 2px 2px black;
-      font-size: 20px;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+            margin-left: 25px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-shadow: 2px 2px 2px black;
+            font-size: 20px;
+        }
 
-    }
-
-    .day-button {
-      width: 120px;
-      padding: 10px; /* Increased padding for easier clicking */
-      background-color: white;
-      border: 20px solid #404040 .10;
-      cursor: pointer;
-      border-radius: 10px;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 20px;
-      font-weight: bolder;
-      box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
-      transition: background-color 0.4s ease-in-out;
-    }
-
-  </style>
+        .day-button {
+            width: 120px;
+            padding: 10px;
+            background-color: white;
+            border: 20px solid #404040 .10;
+            cursor: pointer;
+            border-radius: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            font-weight: bolder;
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.4s ease-in-out;
+        }
+    </style>
 </head>
 <body>
 
-    <div id="david-container" onclick="handleButtonClick('david')">
-        <h2>David</h2>
-        <button class="day-button" onclick="toggleColor(event, this, 'david')">Took Medicine</button>
-    </div>
-    
-    <div id="jessee-container" onclick="handleButtonClick('jessee')">
-        <h2>Jessee</h2>  
-        <button class="day-button" onclick="toggleColor(event, this, 'jessee')">Took Medicine</button>
-    </div>
+<div id="david-container" onclick="handleButtonClick('david')">
+    <h2>David</h2>
+    <button class="day-button" onclick="toggleColor(event, this, 'david')">Took Medicine</button>
+</div>
 
-<script
+<div id="jessee-container" onclick="handleButtonClick('jessee')">
+    <h2>Jessee</h2>  
+    <button class="day-button" onclick="toggleColor(event, this, 'jessee')">Took Medicine</button>
+</div>
 
-    type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
-    import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js";
-
+<script>
     // Your Firebase configuration
- const firebaseConfig = {
+    const firebaseConfig = {
   apiKey: "AIzaSyBuA_eXn0M167S-1t_4xUNcJQJLXo34iYQ",
   authDomain: "tickettracker-d9fd0.firebaseapp.com",
   databaseURL: "https://tickettracker-d9fd0-default-rtdb.firebaseio.com",
@@ -62,18 +55,17 @@
   appId: "1:507068342138:web:06753c5907a610e8bb80c3",
   measurementId: "G-GXPHF1BNXM"
 };
-
-const firebaseApp = initializeApp(firebaseConfig);
-    const db = getDatabase(firebaseApp);
+    const firebaseApp = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
 
     function toggleColor(event, button, person) {
-        const buttonRef = ref(db, `people/${person}`);
-        onValue(buttonRef, (snapshot) => {
+        const buttonRef = db.ref(`people/${person}`);
+        buttonRef.on('value', (snapshot) => {
             const currentValue = snapshot.val();
-            const newValue = !currentValue; // Toggle the value
+            const newValue = !currentValue;
 
             // Update the value in the database
-            set(buttonRef, newValue);
+            buttonRef.set(newValue);
 
             // Update the button's style based on the new value
             button.style.backgroundColor = newValue ? 'green' : 'white';
@@ -83,8 +75,6 @@ const firebaseApp = initializeApp(firebaseConfig);
     function handleButtonClick(person) {
         // You can add additional logic here if needed
     }
-
-
 </script>
 
 </body>
