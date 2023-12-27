@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,6 +45,7 @@
 
 <script>
     // Your Firebase configuration
+    // Your Firebase configuration
     const firebaseConfig = {
   apiKey: "AIzaSyBuA_eXn0M167S-1t_4xUNcJQJLXo34iYQ",
   authDomain: "tickettracker-d9fd0.firebaseapp.com",
@@ -55,8 +56,9 @@
   appId: "1:507068342138:web:06753c5907a610e8bb80c3",
   measurementId: "G-GXPHF1BNXM"
 };
+
     const firebaseApp = firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
+    const db = firebaseApp.database();
 
     function toggleColor(event, button, person) {
         const buttonRef = db.ref(`people/${person}`);
